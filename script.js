@@ -35,6 +35,7 @@ let currentQuestionIndex = 0
 let score = 0
 
 function startQuiz() {
+    progressLength = 0
     progress.style.display = "none"
     percIndex.innerHTML = "0%"
     currentQuestionIndex = 0;
