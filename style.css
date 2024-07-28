@@ -48,7 +48,7 @@ body {
 }
 
 .progress div {
-    width: 80%;
+    width: 75%;
     height: 10px;
     background-color: rgb(229, 225, 225);
     border-radius: 10px;
@@ -58,10 +58,15 @@ body {
 }
 
 .progress p {
-    font-size: 17px;
+    font-size: 12px;
 }
 
-.progress span {
+#complete-perc {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+#movingbar {
     position: absolute;
     top: 0;
     left: 0;
@@ -71,6 +76,7 @@ body {
     border-radius: 10px;
     box-shadow: rgba(51, 247, 17, 0.6) 0px 0px 1px 3px;
     transition: 1s ease 0.2s;
+    display: block;
 }
 
 .options {
@@ -91,6 +97,18 @@ body {
     /* border-bottom: 2px solid rgb(58, 58, 58); */
 }
 
+.next {
+    width: 20%;
+    height: 30px;
+    position: relative;
+    left: 40%;
+    background-color: var(--offblack);
+    color: white;
+    border: 0;
+    border-radius: 3px;
+    display: none;
+}
+
 #score {
     font-size: 12px;
     margin-left: 3%;
@@ -107,13 +125,25 @@ body {
     
 }
 
-.options button:hover {
+.correct {
+    background: #9aeabc;
+}
+
+.incorrect {
+    background: #ff9393;
+}
+
+.options button:hover:not([disabled]) {
     background-color: white;
 }
 
 @media (width < 1080px) {
     .container {
         width: 80%;
+    }
+
+    .progress div {
+        width: 70%;
     }
 }
 
@@ -133,6 +163,15 @@ body {
 
     .progress div {
         width: 70%;
+    }
+
+    .progress p {
+        font-size: 8px;
+    }
+    
+    #complete-perc {
+        font-size: 11px;
+        font-weight: 500;
     }
 }
 

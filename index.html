@@ -10,16 +10,17 @@
     <h2 class="heading">Logic Quiz</h2>
     <div class="container">
         <div class="progress">
-            <p>Progress</p>
+            <p><span id="complete-perc">100%</span> Completed</p>
             <div><span id="movingbar"></span></div>
         </div>
-        <h3>What does the CSS property 'transform: rotate(45deg);' do to an element?</h3>
-        <div class="options">
-            <button>It rotates the element by 45 degrees</button>
-            <button>It scales the element by 45 degrees</button>
-            <button id="option4">It skews the element by 45 degrees</button>
-            <button>It translates the element by 45 degrees</button>
+        <h3 id="question">1. Question here</h3>
+        <div class="options" id="answer-buttons">
+            <button id="btn" data-set="currect">ans one</button>
+            <button id="btn" data-set="currect">ans two</button>
+            <button id="btn" data-set="currect">ans three</button>
+            <button id="btn" data-set="currect">ans four</button>
         </div>
+        <button class="next" id="next-btn">Next</button>
         <p id="score">Score 5/10</p>
     </div>
     
