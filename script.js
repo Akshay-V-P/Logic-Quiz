@@ -10,21 +10,102 @@ const questions = [
         ]
     },
     {
-        question : "Which property is used to change the background color of an element?",
+        question : "What does CSS stand for?",
         answers : [
-            {txt : "color", correct : false},
-            {txt : "background-color", correct : true},
-            {txt : "background-image", correct : false},
-            {txt : "background-style", correct : false}
+            {txt : "Cascading Style Sheets", correct : true},
+            {txt : "Creative Style System", correct : false},
+            {txt : "Computer Style Sheets", correct : false},
+            {txt : "Colorful Style Sheets", correct : false}
+
+        ]
+    },
+    {
+        question : "How do you apply a CSS rule to an HTML element with the id header?",
+        answers : [
+            {txt : "#header { ... }", correct : true},
+            {txt : ".header { ... }", correct : false},
+            {txt : "header { ... }", correct : false},
+            {txt : "*header { ... }", correct : false}
+
+        ]
+    },
+    {
+        question : " What does the 'margin' property do in CSS?",
+        answers : [
+            {txt : "Adds space inside the element's border", correct : false},
+            {txt : "Adds space outside the element's border", correct : true},
+            {txt : "Changes the font size of the element", correct : false},
+            {txt : "Sets the background color of the element", correct : false}
+
+        ]
+    },
+    {
+        question : "How do you select all '&lt;p&gt;' elements within a '&lt;div&gt;' in CSS?",
+        answers : [
+            {txt : "div &gt; p { ... }", correct : false},
+            {txt : "p div { ... }", correct : false},
+            {txt : "div+p { ... }", correct : false},
+            {txt : "div p { ... }", correct : true}
+
+        ]
+    },
+    {
+        question : "What is the default value of the 'display' property in CSS for a &lt;div&gt; element?",
+        answers : [
+            {txt : "inline", correct : false},
+            {txt : "inline-block", correct : false},
+            {txt : "block", correct : true},
+            {txt : "none", correct : false}
+
+        ]
+    },
+    {
+        question : "How can you make text bold in CSS?",
+        answers : [
+            {txt : "text-style: bold;", correct : false},
+            {txt : "font-style: bold;", correct : false},
+            {txt : "text-weight: bold;", correct : false},
+            {txt : "font-weight: bold;", correct : true}
+
+        ]
+    },
+    {
+        question : "What is the purpose of the 'z-index' property in CSS?",
+        answers : [
+            {txt : "To change the font size", correct : false},
+            {txt : "To control the stacking order of positioned elements", correct : true},
+            {txt : "To set the background color", correct : false},
+            {txt : "To add padding inside an element", correct : false}
+
+        ]
+    },
+    {
+        question : "How do you add a comment in a CSS file?",
+        answers : [
+            {txt : "<-- This is a comment -->", correct : false},
+            {txt : "// This is a comment", correct : false},
+            {txt : "# This is a comment", correct : false},
+            {txt : "/* This is a comment */", correct : true}
+
+        ]
+    },
+    {
+        question : "Which property is used to change the font size in CSS?",
+        answers : [
+            {txt : "font-size", correct : true},
+            {txt : "text-size", correct : false},
+            {txt : "font-style", correct : false},
+            {txt : "text-font", correct : false}
 
         ]
     }
 ]
 
-let quesperRatio = 50
+let quesperRatio = 10
 let progressLength = 0 
 const progress = document.getElementById("movingbar")
-const percIndex = document.getElementById("complete-perc") 
+const percIndex = document.getElementById("complete-perc")
+const scoreDisplay = document.getElementById("score") 
 
 const questionElement = document.getElementById("question")
 const answerButtons = document.getElementById("answer-buttons")
@@ -35,6 +116,9 @@ let currentQuestionIndex = 0
 let score = 0
 
 function startQuiz() {
+    scoreDisplay.style.display = "block"
+    nextButton.style.bottom = "0%"
+    questionElement.style.position = "unset"
     progressLength = 0
     progress.style.display = "none"
     percIndex.innerHTML = "0%"
@@ -46,6 +130,7 @@ function startQuiz() {
 
 function showQuestion(){
     resetState()
+    scoreDisplay.innerHTML = "Score " + score +"/"+questions.length
     let currentQuestion = questions[currentQuestionIndex]
     let questionNo = currentQuestionIndex + 1
     questionElement.innerHTML = questionNo + ". " + currentQuestion.question
@@ -103,10 +188,17 @@ function handleNextButton(){
 
 function showScore(){
     resetState()
-    questionElement.innerHTML = score
+    scoreDisplay.style.display = "none"
+    questionElement.innerHTML = "Your score is "+ score+" out of "+ questions.length
+    questionElement.style.position = "relative"
+    questionElement.style.left = "25%"
+    questionElement.style.top = "25%"
     nextButton.style.display = "block"
+    nextButton.style.bottom = "10%"
     nextButton.innerHTML = "Play Again"
+
 }
+
 
 nextButton.addEventListener("click", ()=>{
     if (currentQuestionIndex < questions.length){
