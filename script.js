@@ -98,10 +98,39 @@ const questions = [
             {txt : "text-font", correct : false}
 
         ]
+    },
+    {
+        question : "How can you make a list appear horizontally instead of vertically?",
+        answers : [
+            {txt : "list-style-type: horizontal;", correct : false},
+            {txt : "display: inline;", correct : false},
+            {txt : "float: left;", correct : false},
+            {txt : "display: inline-block;", correct : true}
+
+        ]
+    },
+    {
+        question : "How do you apply a style to elements with the class highlight?",
+        answers : [
+            {txt : ".highlight { }", correct : true},
+            {txt : "#highlight { }", correct : false},
+            {txt : "highlight { }", correct : false},
+            {txt : "*highlight { }", correct : false}
+
+        ]
+    },
+    {
+        question : "Which CSS property is used to control the space between the border and the content of an element?",
+        answers : [
+            {txt : "margin", correct : false},
+            {txt : "padding ", correct : true},
+            {txt : "highlight { }", correct : false},
+            {txt : "gap", correct : false}
+
+        ]
     }
 ]
 
-let quesperRatio = 10
 let progressLength = 0 
 const progress = document.getElementById("movingbar")
 const percIndex = document.getElementById("complete-perc")
@@ -156,9 +185,9 @@ function resetState(){
 
 function selectAnswer(e){
     progress.style.display = "block"
-    progressLength += quesperRatio
-    progress.style.width = progressLength + "%"
-    percIndex.innerHTML = progressLength + "%"
+    progressLength += (1/questions.length)*100
+    progress.style.width = progressLength.toFixed(1) + "%"
+    percIndex.innerHTML = progressLength.toFixed(1) + "%"
     const selectedBtn = e.target
     const isCorrect = selectedBtn.dataset.correct === "true"
     if (isCorrect){
